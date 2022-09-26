@@ -8,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
 
+  //hooks
   const user = useUser();
   const setUser = useSetUser();
 
