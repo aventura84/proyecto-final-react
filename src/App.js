@@ -6,8 +6,22 @@ import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 import Home from "./Home/Home";
 import Post from "./Post";
+import { useState } from "react";
 
 function App() {
+  const[posts,setPosts]=useState([
+    {
+      username:"cleverqazi"
+      caption:
+      imageUrl
+    },{
+      username:"cleverqazi"
+      caption:
+      imageUrl
+    }
+  ]);
+  
+
   return (
     <main>
       <Header />
@@ -17,7 +31,15 @@ function App() {
         <Route path="signup" element={<Signup />} />
       </Routes>
       <Footer />
-      <Post />
+{
+  posts.map(post=>(
+    <Post username={post.username}caption={post.caption} imageUrl={}/>
+  ))
+}
+
+      <Post username="cleverqazi"caption="wow it works " imageUrl=""/>
+      <Post username="sssangha"caption="DOPE "image=/>
+      <Post username="amanath"caption="this is a fun project"/>
       {/*Posts */}
       {/*Posts */}
     </main>
