@@ -6,8 +6,8 @@ import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 import Home from "./Home/Home";
 import Post from "./Post";
-import { useState } from "react";
-
+import { useState,useEffect } from "react";
+import{db}from './firebase';
 function App() {
   const[posts,setPosts]=useState([
     {
@@ -21,9 +21,21 @@ function App() {
     }
   ]);
   
-
+useEffect(()=>{
+db.collection('posts').onSnapshot(snapshot=>{
+setPosts(snapshot.docs.map(doc=>({
+  id:doc.id,
+  post:doc.data()})));
+})
+},[])
   return (
     <main>
+      <Modal
+      open={open}
+      onClose={handleClose}
+      >
+        <h2>I am a model <h2>
+      </Modal>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,8 +44,8 @@ function App() {
       </Routes>
       <Footer />
 {
-  posts.map(post=>(
-    <Post username={post.username}caption={post.caption} imageUrl={}/>
+  posts.map(({id,post})=>(
+    <Post key={id} username={post.username}caption={post.caption} imageUrl={}/>
   ))
 }
 

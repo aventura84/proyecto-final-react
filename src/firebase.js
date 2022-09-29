@@ -1,14 +1,14 @@
 import firebase from "firebase";
 
 const firebaseApp= firebase.initializeApp({
-apiKey:
-authDomain:
-databaseURL
-projectId:
-storageBucket:
-messagingSenderId:
-appId:
-measurementId:
+apiKey:"AizaSyDBUBLX0ZWVi2b",
+authDomain:"instagram-clone-react.firebase,com",
+databaseURL:"https://instagram-clone-react.firebaseio.com",
+projectId:"instagram-clone-react",
+storageBucket:"instagram-clone-react-appspot.com",
+messagingSenderId:"",
+appId:"1:102613421144:web",
+measurementId:"G-XB173J9F0D",
 });
 
 const db = firebaseApp.firestore();
