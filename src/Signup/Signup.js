@@ -27,19 +27,27 @@ function Signup() {
     } else {
       setUser(data);
     }
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((authUser) => {
-        return authUser.user.updateProfile({
-          displayName: username,
-        });
-      })
-      .catch((error) => alert(error.message));
-  };
+    
 
   if (user) {
     return <Navigate to="/" />;
   }
+  auth
+  .createUserWithEmailAndPassword(email, password)
+  .then((authUser) => {
+    return authUser.user.updateProfile({
+      displayName: username,
+    });
+  })
+  .catch((error) => alert(error.message));
+  setOpen(false);
+};
+const signIn = (event)=>{
+event.preventDefault();
+
+auth
+.signInWithEmailAndPassword(email,password)
+.catch.((error)=>alert(error.message)
 
   return (
     <main id="signup" className="modal-like">
