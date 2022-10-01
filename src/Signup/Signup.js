@@ -27,6 +27,14 @@ function Signup() {
     } else {
       setUser(data);
     }
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({
+          displayName: username,
+        });
+      })
+      .catch((error) => alert(error.message));
   };
 
   if (user) {

@@ -8,6 +8,7 @@ import Home from "./Home/Home";
 import Post from "./Post";
 import { useState,useEffect } from "react";
 import{db}from './firebase';
+
 function App() {
   const[posts,setPosts]=useState([
     {
@@ -20,21 +21,58 @@ function App() {
       imageUrl
     }
   ]);
-  
+const[open,setOpen]=useState([]);
+const[username,setusername]=useState('');
+const[password,setPassword]=useState('');
+const[email,setEmail]=useState('');
+const[user,setuser]=useState(null);
+useEffect(()=>{
+  const unsubscribe = AuthenticatorAssertionResponse.onAuthStateChanged((authUser)=>{
+    if(authUser){
+    console.log(authUser);
+    setUser(authUser);
+    if(authUser.displayName){
+}else{
+  return authUser.updateProfile({
+    displayName:username,
+});
+}
+  }else{
+    setUser(null);
+  }
+})
+return()=>{
+  unsubscribe();
+}
+
+},[user,username]);
+
+
 useEffect(()=>{
 db.collection('posts').onSnapshot(snapshot=>{
 setPosts(snapshot.docs.map(doc=>({
   id:doc.id,
-  post:doc.data()})));
+  post:doc.data()
+})));
 })
-},[])
+},[]);
+
+
   return (
     <main>
       <Modal
       open={open}
       onClose={handleClose}
       >
-        <h2>I am a model <h2>
+      <div style={modalStyle}className={classes.paper}>
+        <form className="app_signup">
+          <img
+          className="app_headerImage"
+          src="https://www.instagram.com/static/images/web/M"
+          alt=""
+        />
+        </center>
+        </div>
       </Modal>
       <Header />
       <Routes>
