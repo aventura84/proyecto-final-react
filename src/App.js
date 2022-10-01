@@ -8,7 +8,7 @@ import Home from "./Home/Home";
 import Post from "./Post";
 import { useState,useEffect } from "react";
 import{db}from './firebase';
-
+import SingIn from ".SignIn/SignIn"
 function App() {
   const[posts,setPosts]=useState([
     {
@@ -68,10 +68,10 @@ setPosts(snapshot.docs.map(doc=>({
         <form className="app_signup">
           <img
           className="app_headerImage"
-          src="https://www.instagram.com/static/images/web/M"
+          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/"
           alt=""
         />
-        </center>
+
         </div>
       </Modal>
       <Header />
@@ -79,6 +79,7 @@ setPosts(snapshot.docs.map(doc=>({
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="signin"element={<Signin/>}/>
       </Routes>
       <Footer />
 {
