@@ -60,6 +60,11 @@ setPosts(snapshot.docs.map(doc=>({
 
   return (
     <main>
+      <div className="app">
+      {/* I want to have ...*/}
+      {/*Caption input*/}
+      {/*File picker */}
+      {/*Post button */}
       <Modal
       open={open}
       onClose={handleClose}
