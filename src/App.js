@@ -61,6 +61,7 @@ setPosts(snapshot.docs.map(doc=>({
   return (
     <main>
       <div className="app">
+        <ImageUpload usetname=(user.displayName)/>
       {/* I want to have ...*/}
       {/*Caption input*/}
       {/*File picker */}

@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import {Button}from "material-ul/core";
 import {useLocalStorage}from "./useLocalStorage";
+import { dblClick } from "@testing-library/user-event/dist/click";
 function ImageUpload() {
     const [image,setImage]=useState(null);
     const[progress,setProgress]=useState(0);
@@ -21,6 +22,26 @@ const handleChange=(e)=>{
                 (snapshot.bytesTransferred/snapshot.totalBytes)*100
             );
         setProgress(progress);
+        },
+        (error)=>{
+            //Error function...
+            console.log(error);
+            alert(error.message)
+        },
+        ()=>{
+            //complete function...
+            localStorage
+            .ref("images")
+            .child(image.name)
+            .getDownloadURL()
+            .then (url =>{
+                //post image inside db
+            db.collection("posts").add((
+                timestamp:firebase.firestore.fieldValue.serverTimestamp(),
+caption:caption,
+imageUrl:url
+username: username
+            ))
         }
         )
   }
