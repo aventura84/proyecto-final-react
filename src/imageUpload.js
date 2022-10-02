@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import {Button}from "material-ul/core";
 import {useLocalStorage}from "./useLocalStorage";
 import { dblClick } from "@testing-library/user-event/dist/click";
-function ImageUpload() {
+function ImageUpload({username}) {
     const [image,setImage]=useState(null);
     const[progress,setProgress]=useState(0);
     const [caption,setCaption]= useState('');
@@ -38,20 +38,20 @@ const handleChange=(e)=>{
                 //post image inside db
             db.collection("posts").add((
                 timestamp:firebase.firestore.fieldValue.serverTimestamp(),
-caption:caption,
-imageUrl:url
-username: username
-            ))
+                caption:caption,
+                imageUrl:url
+                username: username
+            });
+            setProgress(0);
+            setCaption("")
+            setImage(null)
         }
-        )
-  }
+        );
+  };
     return (
-    <div>
-      <h1>abc</h1>
-      {/* I want to have ...*/}
-      {/*Caption input*/}
-      {/*File picker */}
-      {/*Post button */}
+    
+      <div className="imageUpload">
+        <progress className="imageupload_progress">
 <input type="text"placeholder='Enter a caption...'onChange={event=>setCaption(event.target.value)/>
 <input type="file"onChange={handleChange}/>
 <Button onClick={handleUpload}/>
