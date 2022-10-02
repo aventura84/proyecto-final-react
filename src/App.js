@@ -61,7 +61,8 @@ setPosts(snapshot.docs.map(doc=>({
   return (
     <main>
       <div className="app">
-        <ImageUpload usetname=(user.displayName)/>
+        
+
       {/* I want to have ...*/}
       {/*Caption input*/}
       {/*File picker */}
@@ -80,6 +81,25 @@ setPosts(snapshot.docs.map(doc=>({
 
         </div>
       </Modal>
+      </div>
+      <div className="app_posts">
+      {
+  posts.map(({id,post})=>(
+    <Post key={id} username={post.username}caption={post.caption} imageUrl={}/>
+  ))
+}
+</div>
+<Instagramembed
+url=
+maxWidth
+hideCaption=
+containerTagName
+protocol
+Injectscripr
+onLoading
+onSucess
+onAfterRender
+onFailure
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -88,17 +108,19 @@ setPosts(snapshot.docs.map(doc=>({
         <Route path="signin"element={<Signin/>}/>
       </Routes>
       <Footer />
-{
-  posts.map(({id,post})=>(
-    <Post key={id} username={post.username}caption={post.caption} imageUrl={}/>
-  ))
-}
+
 
       <Post username="cleverqazi"caption="wow it works " imageUrl=""/>
       <Post username="sssangha"caption="DOPE "image=/>
       <Post username="amanath"caption="this is a fun project"/>
       {/*Posts */}
       {/*Posts */}
+      {user?.displayName ?(
+    
+    <ImageUpload username=(user.displayName)/>
+    ):(
+      <h3>Sorry you need to upload</h3>
+    )}
     </main>
   );
 }
